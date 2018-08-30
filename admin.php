@@ -7,7 +7,7 @@
 </head>
 <body>
     <form action="admin.php" method="POST" enctype="multipart/form-data">
-        <legend>Please, upload a .json file with a test</legend>
+        <div>Please, upload a .json file with a test:</div>
         <input type="file" name="test">
         <div><input type="submit" value="Upload"></div>
     </form>
