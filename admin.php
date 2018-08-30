@@ -25,8 +25,9 @@ if(!empty($_FILES)) {
             $dest = "./Tests/$name";
             move_uploaded_file($_FILES['test']['tmp_name'], $dest);
             echo "The file is uploaded successfully!<br>";?>
-            <a href="/u/ngubanova/me/Lection%202.2/list.php">To the list of tests</a>
         <?php }
     }
 }
 ?>
+
+<a href="/u/ngubanova/me/Lection%202.2/list.php">To the list of tests</a>
