@@ -10,9 +10,14 @@
         <?php $dir = './Tests/';
         $skip = array('.','..');
         $files = scandir($dir);
-        foreach($files as $file)
-            if(!in_array($file, $skip))
-                echo "<li>$file</li>";?>
+        foreach($files as $key => $file):
+            if(!in_array($file, $skip)):
+                $k = $key - 1;
+                $link = 'test.php?testnumber='.$k;
+                $number = substr($file,4,1);
+                echo "<li><a href=$link>Test #$number</a></li>";
+            endif;
+        endforeach;?>
     </ul>
     <a href="/u/ngubanova/me/Lection%202.2/test.php">Start testing!</a>
 </body>
