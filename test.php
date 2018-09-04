@@ -47,7 +47,7 @@
             <a href="./list.php">Choose another test</a><br>
             <a href="./admin.php">Upload one more test</a>
         <?php } else {
-            echo 'Try again, baby. Or...<br>'; ?>
+            echo 'Try again. Or...<br>'; ?>
             <a href="./list.php">Choose another test</a><br>
             <a href="./admin.php">Upload one more test</a>
         <?php } ?>
