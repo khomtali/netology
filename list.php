@@ -19,6 +19,6 @@
             endif;
         endforeach;?>
     </ul>
-    <a href="/u/ngubanova/me/Lection%202.2/test.php">Start testing!</a>
+    <a href="./admin.php">Upload one more test</a>
 </body>
 </html>
