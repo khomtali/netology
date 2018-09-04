@@ -18,7 +18,7 @@
 if(!empty($_FILES)) {
     if(array_key_exists('test', $_FILES)) {
         if($_FILES['test']['type'] != "application/json") {
-            echo "Sorry, we only allow uploading JSON files";
+            echo "Sorry, we allow uploading only JSON files";
             exit;
         } else {
             $name = $_FILES['test']['name'];
@@ -30,4 +30,4 @@ if(!empty($_FILES)) {
 }
 ?>
 
-<a href="/u/ngubanova/me/Lection%202.2/list.php">To the list of tests</a>
+<a href="./list.php">To the list of tests</a>
