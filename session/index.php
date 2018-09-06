@@ -23,7 +23,7 @@
     <meta charset='utf-8'>
 </head>
 <body>
-    <h1>Please, sign in the testing system</h1>
+    <h1>Authorization</h1>
     <?php if(!empty($errors)): ?>
         <ul>
         <?php foreach($errors as $error): ?>
