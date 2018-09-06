@@ -1,0 +1,17 @@
+[
+    {
+        "login": "blackcat",
+        "password": "12345",
+        "name": "Masha Ivanova"
+    },
+    {
+        "login": "gamer",
+        "password": "pass",
+        "name": "Alexander Petushkin"
+    },
+    {
+        "login": "Admin",
+        "password": "admin",
+        "name": "God, just God"
+    }
+]
