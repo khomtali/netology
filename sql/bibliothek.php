@@ -1,5 +1,23 @@
 <?php
-    $pdo = new PDO("mysql:host=localhost;dbname=global;charset=utf8", "ngubanova", "neto1823");
+    ini_set('error_reporting', E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+
+    $pdo = new PDO('mysql:host=localhost;dbname=global;charset=utf8', 'ngubanova', 'neto1823');
+
+    function booksFilter($pdo, $isbn, $name, $author)
+    {
+        $sql = 'SELECT * FROM books WHERE isbn LIKE :isbn AND name LIKE :name AND author LIKE :author';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['isbn' => "%$isbn%", 'name' => "%$name%", 'author' => "%$author%"]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    $isbn = !empty($_GET['isbn']) ? $_GET['isbn'] : '';
+    $name = !empty($_GET['name']) ? $_GET['name'] : '';
+    $author = !empty($_GET['author']) ? $_GET['author'] : '';
+    $filtered = booksFilter($pdo, $isbn, $name, $author);
 ?>
 
 <html>
@@ -37,20 +55,7 @@
                 <th>ISBN</th>
             </tr>
             <?php
-                if(!empty($_GET["isbn"]) || !empty($_GET["name"]) || !empty($_GET["author"])) {
-                    $isbn = "%".$_GET["isbn"]."%";
-                    $name = "%".$_GET["name"]."%";
-                    $author = "%".$_GET["author"]."%";
-                    $sql = "SELECT * FROM books WHERE isbn LIKE :isbn AND name LIKE :name AND author LIKE :author";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(["isbn" => $isbn, "name" => $name, "author" => $author]);
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                } else {
-                    $sth = $pdo->prepare("SELECT * FROM books");
-                    $sth->execute();
-                    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
-                }
-                foreach($result as $row): ?>
+                foreach($filtered as $row): ?>
                 <tr>
                     <td><?php echo $row['name'] ?></td>
                     <td><?php echo $row['author'] ?></td>
