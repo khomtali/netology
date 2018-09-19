@@ -7,7 +7,7 @@
             $row[] = $argv[1];
             $purchase = implode(' ', array_slice($argv, 2));
             $row[] = $purchase;
-            fputcsv($file, $row, ";")));
+            fputcsv($file, $row, ";");
             $expense = implode(', ',$row);
             echo "Expense added: $expense\n";
             fclose($file);
