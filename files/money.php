@@ -11,7 +11,6 @@
             $expense = implode(', ',$row);
             echo "Expense added: $expense\n";
             fclose($file);
-            } else echo "Error! Disable to write in file.\n";
         } else echo "Error! Access to write in .csv file denied.\n";
     } elseif(isset($argv[1]) && $argv[1] == '--today') {
         if(is_readable($csv)) {
