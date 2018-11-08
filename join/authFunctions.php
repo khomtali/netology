@@ -1,9 +1,10 @@
 <?php
   session_start();
+
   function getUsers()
   {
     $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
-    $sqlQuery = 'SELECT login, password FROM user';
+    $sqlQuery = 'SELECT id, login, password FROM user';
     $stmt = $pdo->prepare($sqlQuery);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -38,6 +39,7 @@
     foreach($users as $user) {
       if($user['login'] === $login && $user['password'] === $password) {
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user'] = $user['login'];
         return true;
       }
     }
@@ -52,12 +54,12 @@
     return $_SESSION['user_id'];
   }
 
-  function isAuth()
+  function isAuthorized()
   {
     return (getAuthorizedUser() !== null);
   }
 
-  function logout()
+  function logOut()
   {
     session_destroy();
     header('Location: ./authorization.php');
