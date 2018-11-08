@@ -4,6 +4,7 @@
 
   $tasksByUserId = getTasksByUserId();
   $assignedUserList = getUsers();
+  $taskNumber = countTasks();
   $messages = [];
 
   if(!isAuthorized()) {
@@ -50,10 +51,11 @@
             <input type="hidden" name="refresh" value="1">
             <button type="submit">Refresh this page</button>
         </form>
+        <p>Total tasks: <?php echo $taskNumber; ?></p>
     </div>
     <div>
         <?php if(empty($tasksByUserId)): ?>
-            <p><?php echo $_SESSION['user_id']; ?>, you haven't added any task yet</p>
+            <p><?php echo $_SESSION['user']; ?>, you haven't added any task yet</p>
         <?php else: ?>
             <table class="tasksOfUser" border="1">
                 <tr>
