@@ -45,6 +45,17 @@
     return $stmt->execute([$newUserId, $id, $userId]);
   }
 
+  function countTasks()
+  {
+    $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
+    $sqlQuery = 'SELECT count(*) FROM task WHERE user_id = ? OR assigned_user_id = ?';
+    $userId = $_SESSION['user_id'];
+    $stmt = $pdo->prepare($sqlQuery);
+    $stmt->execute([$userId, $userId]);
+    $result = $stmt->fetch()['count(*)'];
+    return $result;
+  }
+
   function getTasksByUserId()
   {
     $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
