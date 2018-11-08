@@ -67,6 +67,18 @@
     return $result;
   }
 
+  function getTasksByAssigned()
+  {
+    $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
+    $userId = $_SESSION['user_id'];
+    $sqlQuery = 'SELECT t.id, t.user_id, u.login, t.assigned_user_id, t.description, t.is_done, t.date_added
+    FROM task t INNER JOIN user u ON u.id=t.user_id WHERE t.user_id <> ? AND t.assigned_user_id = ? ORDER BY date_added ASC';
+    $stmt = $pdo->prepare($sqlQuery);
+    $stmt->execute([$userId, $userId]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
   function getTaskById($id)
   {
     $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
