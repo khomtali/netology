@@ -1,9 +1,10 @@
 <?php
+  require_once 'connection.php';
   session_start();
 
   function getUsers()
   {
-    $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
+    $pdo = connect();
     $sqlQuery = 'SELECT id, login, password FROM user';
     $stmt = $pdo->prepare($sqlQuery);
     $stmt->execute();
@@ -13,7 +14,7 @@
 
   function register($login, $password)
   {
-    $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
+    $pdo = connect();
     $sqlQuery = 'INSERT INTO user(login, password) VALUES (?, ?)';
     $stmt = $pdo->prepare($sqlQuery);
     $stmt->execute([$login, $password]);
@@ -22,7 +23,7 @@
 
   function userExistence($login)
   {
-    $pdo = new PDO('mysql:host=localhost;dbname=ngubanova;charset=utf8', 'ngubanova', 'neto1823');
+    $pdo = connect();
     $sqlQuery = 'SELECT id FROM user WHERE login = ?';
     $stmt = $pdo->prepare($sqlQuery);
     $stmt->execute([$login]);
