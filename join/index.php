@@ -1,4 +1,5 @@
 <?php
+  require_once 'connection.php';
   require_once 'taskFunctions.php';
   require_once 'authFunctions.php';
 
@@ -12,21 +13,22 @@
     header('Location: ./authorization.php');
     die;
   }
-  if(!empty($_POST['refresh'])) {
-    header('Refresh: 0');
-  }
   if(!empty($_POST['deletedTask'])) {
     deleteTask();
+    header('Location: ./index.php');
   }
   if(!empty($_POST['changedTask'])) {
     changeStatus();
+    header('Location: ./index.php');
   }
   if(!empty($_POST['addTask'])) {
     addTask();
+    header('Location: ./index.php');
     $messages[] = 'The task was added!';
   }
   if(!empty($_POST['newAssigned'])) {
     changeAssigned($_POST['newAssigned']);
+    header('Location: ./index.php');
   }
 ?>
 
@@ -51,10 +53,6 @@
         </form>
     </div>
     <div>
-        <form method="POST">
-            <input type="hidden" name="refresh" value="1">
-            <button type="submit">Refresh this page</button>
-        </form>
         <p>Total tasks: <?php echo $taskNumber; ?></p>
     </div>
     <div>
@@ -73,7 +71,7 @@
                     <tr>
                         <td><?php echo $_SESSION['user']; ?></td>
                         <td>
-                            <?php echo $task['assigned_user_id'] == $_SESSION['user_id'] ? $_SESSION['user'] : $task['assigned_user_id'] ?>
+                            <?php echo $task['assigned_user_id'] == $_SESSION['user_id'] ? $_SESSION['user'] : $task['login'] ?>
                             <form method="POST">
                                 <input name="task_id" type="hidden" value="<?php echo $task['id']; ?>">
                                 <select name="newAssigned">
