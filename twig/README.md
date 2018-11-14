@@ -6,6 +6,6 @@
 
 Установка
 ------------
-1. Создаем таблицы `user` b `task` в MySQL, с помощью дампа `dump.sql`
+1. Создаем таблицы `user` и `task` в MySQL, с помощью дампа `dump.sql`
 2. Скачиваем файлы: `git clone https://github.com/khomtali/netology-hw/twig.git`
 3. Настраиваем доступы к базе в файле `config.php`
